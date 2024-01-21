@@ -454,58 +454,10 @@ public class TreasureManager extends TreasureDataFacade {
 	}
 	
 	public boolean isBlock(Block block) {
-		
 		// returns whether the given block would prevent a chest from opening
 		// based on:
 		// http://www.minecraftwiki.net/wiki/Chest
-		
-		if(block == null || block.getType().isTransparent()) {
-			// translucent/transparent, or non-block
-			return false;
-		}
-		switch (block.getType()) {
-			// water and lava
-		case LAVA:
-		case WATER:
-		case LEGACY_STATIONARY_LAVA:
-		case LEGACY_STATIONARY_WATER:
-
-			// plants
-		case LEGACY_LEAVES:
-		case CACTUS:
-			
-			// translucent blocks
-		case GLASS:
-		case LEGACY_MOB_SPAWNER:
-		case SNOW:
-		case ICE:
-		case LEGACY_FENCE:
-		case CAKE:
-		case LEGACY_BED:
-		case GLOWSTONE:
-		case ANVIL:
-		case BEACON:
-		case CHEST:
-		case SIGN:
-			case LEGACY_SIGN_POST:
-			// slabs
-		case LEGACY_STEP:
-			case LEGACY_WOOD_STEP:
-			// stairs
-			case OAK_STAIRS:
-		case COBBLESTONE_STAIRS:
-		case BRICK_STAIRS:
-			case LEGACY_SMOOTH_STAIRS:
-		case NETHER_BRICK_STAIRS:
-		case SANDSTONE_STAIRS:
-		case SPRUCE_STAIRS:
-		case BIRCH_STAIRS:
-			case JUNGLE_STAIRS:
-		case QUARTZ_STAIRS:
-			return false;
-		default:
-			return true;
-		}
+		return block.getType().isOccluding();
 	}
 	
 	public boolean isBlockedByBlockAbove(Block block) {
